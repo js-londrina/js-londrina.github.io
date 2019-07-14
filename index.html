@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143821088-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-143821088-1');
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -39,7 +48,7 @@
        margin-top: -100px;
        border: 5px #bd081c solid;
      }
-     .text {
+     .text, .footer {
        width: 100%;
        display: flex;
        flex-direction: row;
@@ -60,12 +69,49 @@
      .links a i{
        font-size: 42px;
      }
-   </style>
+     .gallery {
+       width: 100%;
+       display: flex;
+       justify-content: space-around;
+       margin:  15px 0px;
+     }
+     .thumbnail {
+      max-width: 40%;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.8);
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      margin-top: 2%;
+    }
+
+    .lightbox:target {
+      outline: none;
+      display: block;
+    }
+    .footer a{
+      color:#bd081c;
+      text-decoration: none;
+    }
+  </style>
   </head>
   <body>
     <div id="banner"></div>
     <img src="./images/logo.jpg" class="logo"/>
-    <h1>JS Londrina</h1>
+    <div class="links">
+      <a href="https://www.facebook.com/groups/419427535546187" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://github.com/js-londrina/" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
     <h1 class="display">Comunidade de Javascript de Londrina e Região</h1>
     <div class="text">
         <div class="col">
@@ -87,9 +133,25 @@
               </p>  
           </div>      
     </div>
-    <div class="links">
-      <a href="https://www.facebook.com/groups/419427535546187" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://github.com/js-londrina/" target="_blank"><i class="fab fa-github"></i></a>
+    <h1 class="display">Últimas ações da comunidade</h1>
+    <div class="gallery">
+        <a href="#img1">
+          <img src="./images/gallery/alexa.png" class="thumbnail">
+        </a>
+        <a href="#img2">
+          <img src="./images/gallery/scrum.jpg" class="thumbnail">
+        </a>
+        <a href="#_" class="lightbox" id="img1">
+          <img src="./images/gallery/alexa.png" class="thumbnail">
+        </a>
+        <a href="#_" class="lightbox" id="img2">
+          <img src="./images/gallery/scrum.jpg" class="thumbnail">
+        </a>            
+    </div>
+    <div class="footer">
+      <div class="col">
+        <h3 class="sans"><a href="https://docs.google.com/spreadsheets/d/1B2BBOLXjxEq7D4z3D4KRfibMh0vfLsKRBw9RtSiLYpA/edit?usp=sharing">Transparência: caixa da comunidade</a></h3>
+      </div>      
     </div>
   </body>
 </html>
