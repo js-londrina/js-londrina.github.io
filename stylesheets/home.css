@@ -32,6 +32,9 @@ body, html{
  display: flex;
  flex-direction: row;
 }
+a{
+  color:#bd081c;
+}
 .col {
  width: 49%;
  display: inline-block;
@@ -81,4 +84,13 @@ display: block;
 .footer a{
 color:#bd081c;
 text-decoration: none;
+}
+
+@media (max-width: 769px){
+  .col {
+    width: 100%;
+  }
+  .text, .footer {
+    flex-direction: column;
+   }   
 }
