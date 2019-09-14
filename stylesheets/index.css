@@ -19,9 +19,16 @@
   font-family: 'Source Serif Pro', serif;
 }
 
-body,
 .sans {
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+body,
+html {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  text-align: center;
 }
 
 #banner {
@@ -49,6 +56,10 @@ body,
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+a {
+  color: #bd081c;
 }
 
 .col {
@@ -111,4 +122,17 @@ body,
 .footer a {
   color: #bd081c;
   text-decoration: none;
+}
+
+@media (max-width: 769px) {
+  .col {
+    width: 100%;
+  }
+  .text,
+  .footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }

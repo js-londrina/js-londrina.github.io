@@ -17,18 +17,17 @@
 .serif {
   font-family: 'Source Serif Pro', serif;
 }
-body,
 .sans {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-// body,
-// html {
-//   // margin: 0px;
-//   // border: 0px;
-//   // padding: 0px;
-//   // text-align: center;
-// }
+body,
+html {
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  text-align: center;
+}
 #banner {
   width: 100%;
   height: 450px;
@@ -47,6 +46,9 @@ body,
   width: 100%;
   display: flex;
   flex-direction: row;
+}
+a {
+  color: #bd081c;
 }
 .col {
   width: 49%;
@@ -97,4 +99,14 @@ body,
 .footer a {
   color: #bd081c;
   text-decoration: none;
+}
+
+@media (max-width: 769px) {
+  .col {
+    width: 100%;
+  }
+  .text,
+  .footer {
+    flex-direction: column;
+  }
 }
