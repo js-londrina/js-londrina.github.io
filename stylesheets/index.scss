@@ -178,7 +178,7 @@ header {
     padding: #{$jsl-logo-size * 0.1};
     width: $jsl-logo-size;
 
-    @media (max-width: 512px) {
+    @media (max-width: #{$min-body-size-px * 2}) {
       max-height: $jsl-logo-size * 0.75;
       width: $jsl-logo-size * 0.75;
     }
@@ -195,7 +195,7 @@ header {
 }
 
 header:not(:target) {
-  @media (max-width: 512px) {
+  @media (max-width: #{$min-body-size-px * 2}) {
     ul.menu,
     a.jsl-logo,
     ul.social {
@@ -238,7 +238,7 @@ header:target {
     top: 0.25em;
     right: 0.25rem;
 
-    @media (max-width: 1024px) {
+    @media (max-width: #{$min-body-size-px * 4}) {
       right: initial;
     }
   }
@@ -251,7 +251,7 @@ header:target {
     padding: #{$jsl-logo-size * 0.085};
     width: $jsl-logo-size;
 
-    @media (max-width: 512px) {
+    @media (max-width: #{$min-body-size-px * 2}) {
       max-height: $jsl-logo-size * 0.75;
       width: $jsl-logo-size * 0.75;
     }
@@ -323,7 +323,7 @@ section {
     margin: 1.25em 0;
     text-align: justify;
 
-    @media (max-width: 512px) {
+    @media (max-width: #{$min-body-size-px * 2}) {
       text-align: left;
     }
 
@@ -440,7 +440,7 @@ footer {
     margin: 0 0.75em;
   }
 
-  @media (max-width: 512px) {
+  @media (max-width: #{$min-body-size-px * 2}) {
     justify-content: space-evenly;
 
     a {
