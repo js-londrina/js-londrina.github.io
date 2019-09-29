@@ -1,0 +1,108 @@
+//* STYLES
+
+main section#activities ul.activities-gallery {
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 95%;
+
+  li.activities-gallery-item {
+    $borders: 0.125em;
+
+    font-size: 0.75rem;
+    padding: 1em;
+
+    a {
+      border: dotted $borders rgba($color-black, 0.25);
+      padding: $borders / 2;
+
+      &,
+      &::after,
+      img {
+        border-radius: $borders;
+      }
+
+      &::after {
+        height: calc(100% - #{$borders * 2});
+        opacity: 0.35;
+        width: calc(100% - #{$borders * 2});
+      }
+
+      img {
+        background-color: rgba($color-black, 0.25);
+        filter: saturate(32%);
+        max-height: 50vh;
+        padding: $borders;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 0.25;
+        }
+
+        img {
+          filter: saturate(100%);
+        }
+      }
+    }
+  }
+}
+
+div.activities-pic-modal {
+  display: none;
+
+  &:target {
+    background-color: rgba($color-black, 0.99);
+    display: block;
+    left: 0;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+
+    &,
+    a {
+      @include fill-in();
+    }
+
+    a {
+      @include center-items;
+    }
+
+    img {
+      background-color: rgba($color-main, 0.95);
+      border-radius: 0.25rem;
+      max-height: 95%;
+      max-width: 95%;
+      padding: 0.25rem;
+    }
+  }
+}
+
+//* ANIMATIONS
+
+main section#activities ul.activities-gallery li.activities-gallery-item a {
+  &::after {
+    transition: opacity 750ms ease-in-out;
+  }
+
+  img {
+    transition: filter 830ms ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      transition: opacity 375ms ease-in-out;
+    }
+
+    img {
+      transition: filter 415ms ease-in-out;
+    }
+  }
+}
+
+div.activities-pic-modal:target {
+  animation: fade forwards 225ms ease-in-out;
+
+  img {
+    animation: slide forwards 375ms ease-in-out;
+  }
+}

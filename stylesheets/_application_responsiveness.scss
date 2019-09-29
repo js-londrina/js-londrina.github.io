@@ -1,0 +1,51 @@
+// @version: 1.0.0
+// @author: José Dias Neto
+// @email: jdneto@live.com
+// website: https://github.com/jdneto/
+
+//* WHAT IS THIS? *//
+// The HTML 'font-size' rules are used to make styles based on rem/em units full responsive, for any viewport width or height, without media queries.
+
+//* I CAN ONLY USE IT ON FONT SIZES? *//
+// Nope! It can be used on any style based on rem/em units, whether the font-size or other styles (padding, margin, border, ...) and even inside calc().
+
+//* HOW DO I USE IT? *//
+// I   - Set the minimum size of the document body ($min-body-size);
+// II  - Using the browser's developer tools, set the viewport to the chosen document body size;
+// III - Adjust the minimum font size for the root ($min-root-font-size) until the styles based on 'rem' units match your project's requirements;
+// IV  - Set the maximum size of the document body ($max-body-size);
+// V   - Repeat the steps II and III;
+// VI  - That's it. With some practice soon you will master the full responsiveness for all your projects;
+
+$base-height: 100vh;
+$base-width: 100vw;
+
+$min-body-size: 256;
+$min-body-size-px: #{$min-body-size}px;
+$max-body-size: 4096;
+$max-body-size-px: #{$max-body-size}px;
+
+$min-root-font-size: 16;
+$min-root-font-size-px: #{$min-root-font-size}px;
+$max-root-font-size: 64;
+$max-root-font-size-px: #{$max-root-font-size}px;
+
+html {
+  @media (min-width: $min-body-size-px) {
+    font-size: calc(
+      #{$min-root-font-size-px} + (
+          #{$max-root-font-size} - #{$min-root-font-size}
+        ) * ((#{$base-height} - #{$min-body-size-px}) /
+            (#{$max-body-size} - #{$min-body-size}))
+    );
+  }
+
+  @media (orientation: portrait) and (min-width: $min-body-size-px) {
+    font-size: calc(
+      #{$min-root-font-size-px} + (
+          #{$max-root-font-size} - #{$min-root-font-size}
+        ) * ((#{$base-width} - #{$min-body-size-px}) /
+            (#{$max-body-size} - #{$min-body-size}))
+    );
+  }
+}

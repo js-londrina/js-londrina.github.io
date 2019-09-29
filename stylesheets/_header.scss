@@ -1,0 +1,158 @@
+//* HELPERS
+
+@mixin jsl-logo($size) {
+  border: solid #{$size * 0.015} $color-main;
+  max-height: $size;
+  padding: #{$size * 0.125};
+  width: $size;
+
+  @media (max-width: #{$min-body-size * 2}px) {
+    max-height: $size * 0.75;
+    width: $size * 0.75;
+  }
+}
+
+//* STYLES
+
+header {
+  align-items: center;
+  background-blend-mode: luminosity, normal;
+  background-color: $color-white;
+  /* background-image: url('../images/banner.jpg'); */ //* Moved to Javascript lazy loading.
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  position: relative;
+
+  &::after {
+    z-index: 0;
+  }
+
+  &::before,
+  & > * {
+    z-index: 1;
+  }
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+  }
+
+  ul.menu a {
+    @include sans();
+    font-size: 0.375em;
+    font-weight: bold;
+    padding: 0 0.85em;
+    text-transform: uppercase;
+  }
+
+  a.jsl-logo {
+    background-color: $color-white;
+    border-radius: 50%;
+  }
+
+  ul.social a span {
+    display: none;
+  }
+}
+
+header:not(:target) {
+  background-position-x: center;
+  background-position-y: 63.5%;
+  flex-direction: row-reverse;
+  font-size: 1.75rem;
+  height: $header-height;
+  justify-content: space-evenly;
+
+  &::before {
+    background-color: rgba($color-black, 0.5);
+    bottom: 0;
+    content: '';
+    height: 1.0625%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  ul.menu a {
+    border-bottom: dotted 0.125em rgba(0, 0, 0, 0);
+    transition: border-color 125ms ease-in-out;
+
+    &.active {
+      border-bottom-color: $color-white;
+    }
+  }
+
+  a.jsl-logo {
+    @include jsl-logo($size: 2.5em);
+  }
+
+  ul.social a {
+    font-size: 0.75em;
+    padding: 0 0.25em;
+  }
+
+  @media (max-width: #{$min-body-size * 2}px) {
+    padding: 0.5em;
+    justify-content: flex-start;
+
+    & > * {
+      position: absolute;
+    }
+
+    ul.menu {
+      align-self: flex-start;
+    }
+
+    a.jsl-logo {
+      left: 0.5em;
+    }
+
+    ul.social {
+      align-self: flex-end;
+
+      a {
+        font-size: 0.55em;
+      }
+    }
+  }
+}
+
+header:target {
+  animation: fade forwards 375ms ease-in-out;
+  background-position-x: center;
+  background-position-y: center;
+  flex-direction: column;
+  font-size: 2rem;
+  height: 100%;
+  justify-content: center;
+
+  ul.menu {
+    position: absolute;
+    top: 0.25em;
+    right: 0.25rem;
+
+    @media (max-width: #{$min-body-size * 4}px) {
+      right: initial;
+    }
+  }
+
+  a.jsl-logo {
+    @include jsl-logo($size: 9.25em);
+  }
+
+  ul.social a {
+    font-size: 1em;
+    padding: 1em 0.5em;
+  }
+}
+
+//* ANIMATIONS
+
+header:not(:target) ul.menu a {
+  transition: border-color 125ms ease-in-out;
+}
+
+header:target {
+  animation: fade forwards 375ms ease-in-out;
+}

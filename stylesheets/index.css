@@ -2,6 +2,18 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css");
+@media (min-width: 256px) {
+  html {
+    font-size: calc( 16px + ( 64 - 16 ) * ((100vh - 256px) / (4096 - 256)));
+  }
+}
+
+@media (orientation: portrait) and (min-width: 256px) {
+  html {
+    font-size: calc( 16px + ( 64 - 16 ) * ((100vw - 256px) / (4096 - 256)));
+  }
+}
+
 @-webkit-keyframes fade {
   from {
     opacity: 0;
@@ -10,6 +22,7 @@
     opacity: 1;
   }
 }
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -19,29 +32,55 @@
   }
 }
 
-@-webkit-keyframes slide-from {
-  0% {
+@-webkit-keyframes slide {
+  from {
     opacity: 0;
-    -webkit-transform: translateY(-0.125rem);
-            transform: translateY(-0.125rem);
+    -webkit-transform: translateY(-0.0625rem);
+            transform: translateY(-0.0625rem);
   }
-  100% {
+  to {
     opacity: 1;
     -webkit-transform: translateY(0);
             transform: translateY(0);
   }
 }
 
-@keyframes slide-from {
-  0% {
+@keyframes slide {
+  from {
     opacity: 0;
-    -webkit-transform: translateY(-0.125rem);
-            transform: translateY(-0.125rem);
+    -webkit-transform: translateY(-0.0625rem);
+            transform: translateY(-0.0625rem);
   }
-  100% {
+  to {
     opacity: 1;
     -webkit-transform: translateY(0);
             transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes through {
+  from {
+    opacity: 0.5;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    opacity: 0.5;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+
+@keyframes through {
+  from {
+    opacity: 0.5;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    opacity: 0.5;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
 }
 
@@ -55,49 +94,27 @@
 }
 
 *.red-mask::after {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
   background-color: #bd081c;
   content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  opacity: 0.5;
-  top: 0;
-  width: 100%;
-}
-
-body,
-html {
-  height: 100%;
-  width: 100%;
-}
-
-@media (min-width: 256px) {
-  html {
-    font-size: calc( 16px + ( 64 - 16 ) * ((100vh - 256px) / (4096 - 256)));
-  }
-}
-
-@media (orientation: portrait) and (min-width: 256px) {
-  html {
-    font-size: calc( 16px + ( 64 - 16 ) * ((100vw - 256px) / (4096 - 256)));
-  }
-}
-
-body {
-  -webkit-animation: fade forwards 750ms ease-in-out;
-          animation: fade forwards 750ms ease-in-out;
-  background-color: #bd081c;
-  color: #0c0c0c;
-  margin: 0 auto;
-  max-width: 4096px;
-  min-width: 256px;
-  opacity: 0;
-  overflow: hidden;
+  opacity: 0.75;
 }
 
 img {
-  max-width: 100%;
   max-height: 100%;
+  max-width: 100%;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
 }
 
 ul {
@@ -107,9 +124,15 @@ ul {
 ul,
 ul li,
 ul li a {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 ul li a {
@@ -117,23 +140,69 @@ ul li a {
   width: 100%;
 }
 
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #bd081c;
+  color: #0c0c0c;
+  margin: 0 auto;
+  max-width: 4096px;
+  min-width: 256px;
+  overflow: hidden;
+}
+
+body div.loading {
+  background-color: #bd081c;
+  height: 0.25%;
+  opacity: 0;
+  position: fixed;
+  z-index: 100;
+}
+
+body div.loading.active {
+  opacity: 1;
+}
+
+body div.loading, body div.loading::after {
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+body div.loading::after {
+  background-color: #fafafa;
+  content: '';
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+}
+
+body div.loading {
+  -webkit-transition: opacity 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+}
+
+body div.loading::after {
+  -webkit-animation: through forwards 2.25s linear infinite;
+          animation: through forwards 2.25s linear infinite;
+}
+
 header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url("../images/banner.jpg");
-  background-position-y: 42.5%;
-  background-position-x: center;
+  background-blend-mode: luminosity, normal;
+  background-color: #fafafa;
+  /* background-image: url('../images/banner.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 1.75rem;
-  height: 14.75%;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   position: relative;
 }
 
@@ -141,6 +210,7 @@ header::after {
   z-index: 0;
 }
 
+header::before,
 header > * {
   z-index: 1;
 }
@@ -150,14 +220,8 @@ header a {
   text-decoration: none;
 }
 
-header ul.menu {
-  font-family: 'Source Sans Pro', sans-serif;
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
-}
-
 header ul.menu a {
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 0.375em;
   font-weight: bold;
   padding: 0 0.85em;
@@ -166,52 +230,86 @@ header ul.menu a {
 
 header a.jsl-logo {
   background-color: #fafafa;
-  border: solid 0.05em #bd081c;
   border-radius: 50%;
+}
+
+header ul.social a span {
+  display: none;
+}
+
+header:not(:target) {
+  background-position-x: center;
+  background-position-y: 63.5%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  font-size: 1.75rem;
+  height: 16.19433vh;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+header:not(:target)::before {
+  background-color: rgba(12, 12, 12, 0.5);
+  bottom: 0;
+  content: '';
+  height: 1.0625%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+header:not(:target) ul.menu a {
+  border-bottom: dotted 0.125em rgba(0, 0, 0, 0);
+  -webkit-transition: border-color 125ms ease-in-out;
+  transition: border-color 125ms ease-in-out;
+}
+
+header:not(:target) ul.menu a.active {
+  border-bottom-color: #fafafa;
+}
+
+header:not(:target) a.jsl-logo {
+  border: solid 0.0375em #bd081c;
   max-height: 2.5em;
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-  padding: 0.25em;
+  padding: 0.3125em;
   width: 2.5em;
 }
 
 @media (max-width: 512px) {
-  header a.jsl-logo {
+  header:not(:target) a.jsl-logo {
     max-height: 1.875em;
     width: 1.875em;
   }
 }
 
-header ul.social {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-}
-
-header ul.social a {
+header:not(:target) ul.social a {
   font-size: 0.75em;
   padding: 0 0.25em;
 }
 
 @media (max-width: 512px) {
-  header:not(:target) ul.menu,
-  header:not(:target) a.jsl-logo,
-  header:not(:target) ul.social {
+  header:not(:target) {
+    padding: 0.5em;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  header:not(:target) > * {
     position: absolute;
   }
-  header:not(:target) ul.menu,
-  header:not(:target) ul.social {
-    right: 0.25em;
-  }
   header:not(:target) ul.menu {
-    top: 0.25em;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
   }
   header:not(:target) a.jsl-logo {
-    left: 0.25em;
+    left: 0.5em;
   }
   header:not(:target) ul.social {
-    bottom: 0.25em;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
   }
   header:not(:target) ul.social a {
     font-size: 0.55em;
@@ -219,18 +317,19 @@ header ul.social a {
 }
 
 header:target {
-  background-position: center center;
+  -webkit-animation: fade forwards 375ms ease-in-out;
+          animation: fade forwards 375ms ease-in-out;
+  background-position-x: center;
+  background-position-y: center;
   -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-size: 2rem;
   height: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: none;
-  transition: none;
 }
 
 header:target ul.menu {
@@ -248,7 +347,7 @@ header:target ul.menu {
 header:target a.jsl-logo {
   border: solid 0.13875em #bd081c;
   max-height: 9.25em;
-  padding: 0.78625em;
+  padding: 1.15625em;
   width: 9.25em;
 }
 
@@ -264,641 +363,125 @@ header:target ul.social a {
   padding: 1em 0.5em;
 }
 
+header:not(:target) ul.menu a {
+  -webkit-transition: border-color 125ms ease-in-out;
+  transition: border-color 125ms ease-in-out;
+}
+
+header:target {
+  -webkit-animation: fade forwards 375ms ease-in-out;
+          animation: fade forwards 375ms ease-in-out;
+}
+
 main {
   background-color: #fafafa;
-  height: 82.5%;
+  height: 80.97166vh;
   overflow: hidden;
   position: relative;
 }
 
-section {
-  font-size: 1rem;
+main section {
   height: 100%;
-  left: 0;
-  overflow: auto;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  z-index: 0;
   width: 100%;
+  font-size: 1rem;
+  overflow: auto;
+  padding: 0 1.75em;
+  pointer-events: none;
 }
 
-section:target {
-  opacity: 1;
+main section:target {
   pointer-events: initial;
-  z-index: 1;
 }
 
-section:target h1.title {
-  -webkit-animation: slide-from forwards 150ms ease-in-out;
-          animation: slide-from forwards 150ms ease-in-out;
+main section:target *:nth-child(1) {
+  -webkit-animation: slide forwards 175ms ease-in-out;
+          animation: slide forwards 175ms ease-in-out;
 }
 
-section:target li:nth-of-type(1) a,
-section:target p:nth-of-type(1) {
-  -webkit-animation: slide-from forwards 175ms ease-in-out;
-          animation: slide-from forwards 175ms ease-in-out;
+main section:target *:nth-child(2) {
+  -webkit-animation: slide forwards 225ms ease-in-out;
+          animation: slide forwards 225ms ease-in-out;
 }
 
-section:target li:nth-of-type(2) a,
-section:target p:nth-of-type(2) {
-  -webkit-animation: slide-from forwards 225ms ease-in-out;
-          animation: slide-from forwards 225ms ease-in-out;
+main section:target *:nth-child(3) {
+  -webkit-animation: slide forwards 275ms ease-in-out;
+          animation: slide forwards 275ms ease-in-out;
 }
 
-section:target li:nth-of-type(3) a,
-section:target p:nth-of-type(3) {
-  -webkit-animation: slide-from forwards 275ms ease-in-out;
-          animation: slide-from forwards 275ms ease-in-out;
+main section:target *:nth-child(4) {
+  -webkit-animation: slide forwards 325ms ease-in-out;
+          animation: slide forwards 325ms ease-in-out;
 }
 
-section:target li:nth-of-type(4) a,
-section:target p:nth-of-type(4) {
-  -webkit-animation: slide-from forwards 325ms ease-in-out;
-          animation: slide-from forwards 325ms ease-in-out;
+main section:target *:nth-child(5) {
+  -webkit-animation: slide forwards 375ms ease-in-out;
+          animation: slide forwards 375ms ease-in-out;
 }
 
-section:target li:nth-of-type(5) a,
-section:target p:nth-of-type(5) {
-  -webkit-animation: slide-from forwards 375ms ease-in-out;
-          animation: slide-from forwards 375ms ease-in-out;
+main section:target *:nth-child(6) {
+  -webkit-animation: slide forwards 425ms ease-in-out;
+          animation: slide forwards 425ms ease-in-out;
 }
 
-section:target li:nth-of-type(6) a,
-section:target p:nth-of-type(6) {
-  -webkit-animation: slide-from forwards 425ms ease-in-out;
-          animation: slide-from forwards 425ms ease-in-out;
+main section:target *:nth-child(7) {
+  -webkit-animation: slide forwards 475ms ease-in-out;
+          animation: slide forwards 475ms ease-in-out;
 }
 
-section:target li:nth-of-type(7) a,
-section:target p:nth-of-type(7) {
-  -webkit-animation: slide-from forwards 475ms ease-in-out;
-          animation: slide-from forwards 475ms ease-in-out;
+main section:target *:nth-child(8) {
+  -webkit-animation: slide forwards 525ms ease-in-out;
+          animation: slide forwards 525ms ease-in-out;
 }
 
-section:target li:nth-of-type(8) a,
-section:target p:nth-of-type(8) {
-  -webkit-animation: slide-from forwards 525ms ease-in-out;
-          animation: slide-from forwards 525ms ease-in-out;
+main section:target *:nth-child(9) {
+  -webkit-animation: slide forwards 575ms ease-in-out;
+          animation: slide forwards 575ms ease-in-out;
 }
 
-section:target li:nth-of-type(9) a,
-section:target p:nth-of-type(9) {
-  -webkit-animation: slide-from forwards 575ms ease-in-out;
-          animation: slide-from forwards 575ms ease-in-out;
+main section:target *:nth-child(10) {
+  -webkit-animation: slide forwards 625ms ease-in-out;
+          animation: slide forwards 625ms ease-in-out;
 }
 
-section:target li:nth-of-type(10) a,
-section:target p:nth-of-type(10) {
-  -webkit-animation: slide-from forwards 625ms ease-in-out;
-          animation: slide-from forwards 625ms ease-in-out;
+main section:target *:nth-child(11) {
+  -webkit-animation: slide forwards 675ms ease-in-out;
+          animation: slide forwards 675ms ease-in-out;
 }
 
-section:target li:nth-of-type(11) a,
-section:target p:nth-of-type(11) {
-  -webkit-animation: slide-from forwards 675ms ease-in-out;
-          animation: slide-from forwards 675ms ease-in-out;
+main section:target *:nth-child(12) {
+  -webkit-animation: slide forwards 725ms ease-in-out;
+          animation: slide forwards 725ms ease-in-out;
 }
 
-section:target li:nth-of-type(12) a,
-section:target p:nth-of-type(12) {
-  -webkit-animation: slide-from forwards 725ms ease-in-out;
-          animation: slide-from forwards 725ms ease-in-out;
+main section:target *:nth-child(13) {
+  -webkit-animation: slide forwards 775ms ease-in-out;
+          animation: slide forwards 775ms ease-in-out;
 }
 
-section:target li:nth-of-type(13) a,
-section:target p:nth-of-type(13) {
-  -webkit-animation: slide-from forwards 775ms ease-in-out;
-          animation: slide-from forwards 775ms ease-in-out;
+main section:target *:nth-child(14) {
+  -webkit-animation: slide forwards 825ms ease-in-out;
+          animation: slide forwards 825ms ease-in-out;
 }
 
-section:target li:nth-of-type(14) a,
-section:target p:nth-of-type(14) {
-  -webkit-animation: slide-from forwards 825ms ease-in-out;
-          animation: slide-from forwards 825ms ease-in-out;
+main section:target *:nth-child(15) {
+  -webkit-animation: slide forwards 875ms ease-in-out;
+          animation: slide forwards 875ms ease-in-out;
 }
 
-section:target li:nth-of-type(15) a,
-section:target p:nth-of-type(15) {
-  -webkit-animation: slide-from forwards 875ms ease-in-out;
-          animation: slide-from forwards 875ms ease-in-out;
+main section:target *:nth-child(16) {
+  -webkit-animation: slide forwards 925ms ease-in-out;
+          animation: slide forwards 925ms ease-in-out;
 }
 
-section:target li:nth-of-type(16) a,
-section:target p:nth-of-type(16) {
-  -webkit-animation: slide-from forwards 925ms ease-in-out;
-          animation: slide-from forwards 925ms ease-in-out;
+main section:target > * {
+  opacity: 1;
 }
 
-section:target li:nth-of-type(17) a,
-section:target p:nth-of-type(17) {
-  -webkit-animation: slide-from forwards 975ms ease-in-out;
-          animation: slide-from forwards 975ms ease-in-out;
-}
-
-section:target li:nth-of-type(18) a,
-section:target p:nth-of-type(18) {
-  -webkit-animation: slide-from forwards 1025ms ease-in-out;
-          animation: slide-from forwards 1025ms ease-in-out;
-}
-
-section:target li:nth-of-type(19) a,
-section:target p:nth-of-type(19) {
-  -webkit-animation: slide-from forwards 1075ms ease-in-out;
-          animation: slide-from forwards 1075ms ease-in-out;
-}
-
-section:target li:nth-of-type(20) a,
-section:target p:nth-of-type(20) {
-  -webkit-animation: slide-from forwards 1125ms ease-in-out;
-          animation: slide-from forwards 1125ms ease-in-out;
-}
-
-section:target li:nth-of-type(21) a,
-section:target p:nth-of-type(21) {
-  -webkit-animation: slide-from forwards 1175ms ease-in-out;
-          animation: slide-from forwards 1175ms ease-in-out;
-}
-
-section:target li:nth-of-type(22) a,
-section:target p:nth-of-type(22) {
-  -webkit-animation: slide-from forwards 1225ms ease-in-out;
-          animation: slide-from forwards 1225ms ease-in-out;
-}
-
-section:target li:nth-of-type(23) a,
-section:target p:nth-of-type(23) {
-  -webkit-animation: slide-from forwards 1275ms ease-in-out;
-          animation: slide-from forwards 1275ms ease-in-out;
-}
-
-section:target li:nth-of-type(24) a,
-section:target p:nth-of-type(24) {
-  -webkit-animation: slide-from forwards 1325ms ease-in-out;
-          animation: slide-from forwards 1325ms ease-in-out;
-}
-
-section:target li:nth-of-type(25) a,
-section:target p:nth-of-type(25) {
-  -webkit-animation: slide-from forwards 1375ms ease-in-out;
-          animation: slide-from forwards 1375ms ease-in-out;
-}
-
-section:target li:nth-of-type(26) a,
-section:target p:nth-of-type(26) {
-  -webkit-animation: slide-from forwards 1425ms ease-in-out;
-          animation: slide-from forwards 1425ms ease-in-out;
-}
-
-section:target li:nth-of-type(27) a,
-section:target p:nth-of-type(27) {
-  -webkit-animation: slide-from forwards 1475ms ease-in-out;
-          animation: slide-from forwards 1475ms ease-in-out;
-}
-
-section:target li:nth-of-type(28) a,
-section:target p:nth-of-type(28) {
-  -webkit-animation: slide-from forwards 1525ms ease-in-out;
-          animation: slide-from forwards 1525ms ease-in-out;
-}
-
-section:target li:nth-of-type(29) a,
-section:target p:nth-of-type(29) {
-  -webkit-animation: slide-from forwards 1575ms ease-in-out;
-          animation: slide-from forwards 1575ms ease-in-out;
-}
-
-section:target li:nth-of-type(30) a,
-section:target p:nth-of-type(30) {
-  -webkit-animation: slide-from forwards 1625ms ease-in-out;
-          animation: slide-from forwards 1625ms ease-in-out;
-}
-
-section:target li:nth-of-type(31) a,
-section:target p:nth-of-type(31) {
-  -webkit-animation: slide-from forwards 1675ms ease-in-out;
-          animation: slide-from forwards 1675ms ease-in-out;
-}
-
-section:target li:nth-of-type(32) a,
-section:target p:nth-of-type(32) {
-  -webkit-animation: slide-from forwards 1725ms ease-in-out;
-          animation: slide-from forwards 1725ms ease-in-out;
-}
-
-section:target li:nth-of-type(33) a,
-section:target p:nth-of-type(33) {
-  -webkit-animation: slide-from forwards 1775ms ease-in-out;
-          animation: slide-from forwards 1775ms ease-in-out;
-}
-
-section:target li:nth-of-type(34) a,
-section:target p:nth-of-type(34) {
-  -webkit-animation: slide-from forwards 1825ms ease-in-out;
-          animation: slide-from forwards 1825ms ease-in-out;
-}
-
-section:target li:nth-of-type(35) a,
-section:target p:nth-of-type(35) {
-  -webkit-animation: slide-from forwards 1875ms ease-in-out;
-          animation: slide-from forwards 1875ms ease-in-out;
-}
-
-section:target li:nth-of-type(36) a,
-section:target p:nth-of-type(36) {
-  -webkit-animation: slide-from forwards 1925ms ease-in-out;
-          animation: slide-from forwards 1925ms ease-in-out;
-}
-
-section:target li:nth-of-type(37) a,
-section:target p:nth-of-type(37) {
-  -webkit-animation: slide-from forwards 1975ms ease-in-out;
-          animation: slide-from forwards 1975ms ease-in-out;
-}
-
-section:target li:nth-of-type(38) a,
-section:target p:nth-of-type(38) {
-  -webkit-animation: slide-from forwards 2025ms ease-in-out;
-          animation: slide-from forwards 2025ms ease-in-out;
-}
-
-section:target li:nth-of-type(39) a,
-section:target p:nth-of-type(39) {
-  -webkit-animation: slide-from forwards 2075ms ease-in-out;
-          animation: slide-from forwards 2075ms ease-in-out;
-}
-
-section:target li:nth-of-type(40) a,
-section:target p:nth-of-type(40) {
-  -webkit-animation: slide-from forwards 2125ms ease-in-out;
-          animation: slide-from forwards 2125ms ease-in-out;
-}
-
-section:target li:nth-of-type(41) a,
-section:target p:nth-of-type(41) {
-  -webkit-animation: slide-from forwards 2175ms ease-in-out;
-          animation: slide-from forwards 2175ms ease-in-out;
-}
-
-section:target li:nth-of-type(42) a,
-section:target p:nth-of-type(42) {
-  -webkit-animation: slide-from forwards 2225ms ease-in-out;
-          animation: slide-from forwards 2225ms ease-in-out;
-}
-
-section:target li:nth-of-type(43) a,
-section:target p:nth-of-type(43) {
-  -webkit-animation: slide-from forwards 2275ms ease-in-out;
-          animation: slide-from forwards 2275ms ease-in-out;
-}
-
-section:target li:nth-of-type(44) a,
-section:target p:nth-of-type(44) {
-  -webkit-animation: slide-from forwards 2325ms ease-in-out;
-          animation: slide-from forwards 2325ms ease-in-out;
-}
-
-section:target li:nth-of-type(45) a,
-section:target p:nth-of-type(45) {
-  -webkit-animation: slide-from forwards 2375ms ease-in-out;
-          animation: slide-from forwards 2375ms ease-in-out;
-}
-
-section:target li:nth-of-type(46) a,
-section:target p:nth-of-type(46) {
-  -webkit-animation: slide-from forwards 2425ms ease-in-out;
-          animation: slide-from forwards 2425ms ease-in-out;
-}
-
-section:target li:nth-of-type(47) a,
-section:target p:nth-of-type(47) {
-  -webkit-animation: slide-from forwards 2475ms ease-in-out;
-          animation: slide-from forwards 2475ms ease-in-out;
-}
-
-section:target li:nth-of-type(48) a,
-section:target p:nth-of-type(48) {
-  -webkit-animation: slide-from forwards 2525ms ease-in-out;
-          animation: slide-from forwards 2525ms ease-in-out;
-}
-
-section:target li:nth-of-type(49) a,
-section:target p:nth-of-type(49) {
-  -webkit-animation: slide-from forwards 2575ms ease-in-out;
-          animation: slide-from forwards 2575ms ease-in-out;
-}
-
-section:target li:nth-of-type(50) a,
-section:target p:nth-of-type(50) {
-  -webkit-animation: slide-from forwards 2625ms ease-in-out;
-          animation: slide-from forwards 2625ms ease-in-out;
-}
-
-section:target li:nth-of-type(51) a,
-section:target p:nth-of-type(51) {
-  -webkit-animation: slide-from forwards 2675ms ease-in-out;
-          animation: slide-from forwards 2675ms ease-in-out;
-}
-
-section:target li:nth-of-type(52) a,
-section:target p:nth-of-type(52) {
-  -webkit-animation: slide-from forwards 2725ms ease-in-out;
-          animation: slide-from forwards 2725ms ease-in-out;
-}
-
-section:target li:nth-of-type(53) a,
-section:target p:nth-of-type(53) {
-  -webkit-animation: slide-from forwards 2775ms ease-in-out;
-          animation: slide-from forwards 2775ms ease-in-out;
-}
-
-section:target li:nth-of-type(54) a,
-section:target p:nth-of-type(54) {
-  -webkit-animation: slide-from forwards 2825ms ease-in-out;
-          animation: slide-from forwards 2825ms ease-in-out;
-}
-
-section:target li:nth-of-type(55) a,
-section:target p:nth-of-type(55) {
-  -webkit-animation: slide-from forwards 2875ms ease-in-out;
-          animation: slide-from forwards 2875ms ease-in-out;
-}
-
-section:target li:nth-of-type(56) a,
-section:target p:nth-of-type(56) {
-  -webkit-animation: slide-from forwards 2925ms ease-in-out;
-          animation: slide-from forwards 2925ms ease-in-out;
-}
-
-section:target li:nth-of-type(57) a,
-section:target p:nth-of-type(57) {
-  -webkit-animation: slide-from forwards 2975ms ease-in-out;
-          animation: slide-from forwards 2975ms ease-in-out;
-}
-
-section:target li:nth-of-type(58) a,
-section:target p:nth-of-type(58) {
-  -webkit-animation: slide-from forwards 3025ms ease-in-out;
-          animation: slide-from forwards 3025ms ease-in-out;
-}
-
-section:target li:nth-of-type(59) a,
-section:target p:nth-of-type(59) {
-  -webkit-animation: slide-from forwards 3075ms ease-in-out;
-          animation: slide-from forwards 3075ms ease-in-out;
-}
-
-section:target li:nth-of-type(60) a,
-section:target p:nth-of-type(60) {
-  -webkit-animation: slide-from forwards 3125ms ease-in-out;
-          animation: slide-from forwards 3125ms ease-in-out;
-}
-
-section:target li:nth-of-type(61) a,
-section:target p:nth-of-type(61) {
-  -webkit-animation: slide-from forwards 3175ms ease-in-out;
-          animation: slide-from forwards 3175ms ease-in-out;
-}
-
-section:target li:nth-of-type(62) a,
-section:target p:nth-of-type(62) {
-  -webkit-animation: slide-from forwards 3225ms ease-in-out;
-          animation: slide-from forwards 3225ms ease-in-out;
-}
-
-section:target li:nth-of-type(63) a,
-section:target p:nth-of-type(63) {
-  -webkit-animation: slide-from forwards 3275ms ease-in-out;
-          animation: slide-from forwards 3275ms ease-in-out;
-}
-
-section:target li:nth-of-type(64) a,
-section:target p:nth-of-type(64) {
-  -webkit-animation: slide-from forwards 3325ms ease-in-out;
-          animation: slide-from forwards 3325ms ease-in-out;
-}
-
-section:target li:nth-of-type(65) a,
-section:target p:nth-of-type(65) {
-  -webkit-animation: slide-from forwards 3375ms ease-in-out;
-          animation: slide-from forwards 3375ms ease-in-out;
-}
-
-section:target li:nth-of-type(66) a,
-section:target p:nth-of-type(66) {
-  -webkit-animation: slide-from forwards 3425ms ease-in-out;
-          animation: slide-from forwards 3425ms ease-in-out;
-}
-
-section:target li:nth-of-type(67) a,
-section:target p:nth-of-type(67) {
-  -webkit-animation: slide-from forwards 3475ms ease-in-out;
-          animation: slide-from forwards 3475ms ease-in-out;
-}
-
-section:target li:nth-of-type(68) a,
-section:target p:nth-of-type(68) {
-  -webkit-animation: slide-from forwards 3525ms ease-in-out;
-          animation: slide-from forwards 3525ms ease-in-out;
-}
-
-section:target li:nth-of-type(69) a,
-section:target p:nth-of-type(69) {
-  -webkit-animation: slide-from forwards 3575ms ease-in-out;
-          animation: slide-from forwards 3575ms ease-in-out;
-}
-
-section:target li:nth-of-type(70) a,
-section:target p:nth-of-type(70) {
-  -webkit-animation: slide-from forwards 3625ms ease-in-out;
-          animation: slide-from forwards 3625ms ease-in-out;
-}
-
-section:target li:nth-of-type(71) a,
-section:target p:nth-of-type(71) {
-  -webkit-animation: slide-from forwards 3675ms ease-in-out;
-          animation: slide-from forwards 3675ms ease-in-out;
-}
-
-section:target li:nth-of-type(72) a,
-section:target p:nth-of-type(72) {
-  -webkit-animation: slide-from forwards 3725ms ease-in-out;
-          animation: slide-from forwards 3725ms ease-in-out;
-}
-
-section:target li:nth-of-type(73) a,
-section:target p:nth-of-type(73) {
-  -webkit-animation: slide-from forwards 3775ms ease-in-out;
-          animation: slide-from forwards 3775ms ease-in-out;
-}
-
-section:target li:nth-of-type(74) a,
-section:target p:nth-of-type(74) {
-  -webkit-animation: slide-from forwards 3825ms ease-in-out;
-          animation: slide-from forwards 3825ms ease-in-out;
-}
-
-section:target li:nth-of-type(75) a,
-section:target p:nth-of-type(75) {
-  -webkit-animation: slide-from forwards 3875ms ease-in-out;
-          animation: slide-from forwards 3875ms ease-in-out;
-}
-
-section:target li:nth-of-type(76) a,
-section:target p:nth-of-type(76) {
-  -webkit-animation: slide-from forwards 3925ms ease-in-out;
-          animation: slide-from forwards 3925ms ease-in-out;
-}
-
-section:target li:nth-of-type(77) a,
-section:target p:nth-of-type(77) {
-  -webkit-animation: slide-from forwards 3975ms ease-in-out;
-          animation: slide-from forwards 3975ms ease-in-out;
-}
-
-section:target li:nth-of-type(78) a,
-section:target p:nth-of-type(78) {
-  -webkit-animation: slide-from forwards 4025ms ease-in-out;
-          animation: slide-from forwards 4025ms ease-in-out;
-}
-
-section:target li:nth-of-type(79) a,
-section:target p:nth-of-type(79) {
-  -webkit-animation: slide-from forwards 4075ms ease-in-out;
-          animation: slide-from forwards 4075ms ease-in-out;
-}
-
-section:target li:nth-of-type(80) a,
-section:target p:nth-of-type(80) {
-  -webkit-animation: slide-from forwards 4125ms ease-in-out;
-          animation: slide-from forwards 4125ms ease-in-out;
-}
-
-section:target li:nth-of-type(81) a,
-section:target p:nth-of-type(81) {
-  -webkit-animation: slide-from forwards 4175ms ease-in-out;
-          animation: slide-from forwards 4175ms ease-in-out;
-}
-
-section:target li:nth-of-type(82) a,
-section:target p:nth-of-type(82) {
-  -webkit-animation: slide-from forwards 4225ms ease-in-out;
-          animation: slide-from forwards 4225ms ease-in-out;
-}
-
-section:target li:nth-of-type(83) a,
-section:target p:nth-of-type(83) {
-  -webkit-animation: slide-from forwards 4275ms ease-in-out;
-          animation: slide-from forwards 4275ms ease-in-out;
-}
-
-section:target li:nth-of-type(84) a,
-section:target p:nth-of-type(84) {
-  -webkit-animation: slide-from forwards 4325ms ease-in-out;
-          animation: slide-from forwards 4325ms ease-in-out;
-}
-
-section:target li:nth-of-type(85) a,
-section:target p:nth-of-type(85) {
-  -webkit-animation: slide-from forwards 4375ms ease-in-out;
-          animation: slide-from forwards 4375ms ease-in-out;
-}
-
-section:target li:nth-of-type(86) a,
-section:target p:nth-of-type(86) {
-  -webkit-animation: slide-from forwards 4425ms ease-in-out;
-          animation: slide-from forwards 4425ms ease-in-out;
-}
-
-section:target li:nth-of-type(87) a,
-section:target p:nth-of-type(87) {
-  -webkit-animation: slide-from forwards 4475ms ease-in-out;
-          animation: slide-from forwards 4475ms ease-in-out;
-}
-
-section:target li:nth-of-type(88) a,
-section:target p:nth-of-type(88) {
-  -webkit-animation: slide-from forwards 4525ms ease-in-out;
-          animation: slide-from forwards 4525ms ease-in-out;
-}
-
-section:target li:nth-of-type(89) a,
-section:target p:nth-of-type(89) {
-  -webkit-animation: slide-from forwards 4575ms ease-in-out;
-          animation: slide-from forwards 4575ms ease-in-out;
-}
-
-section:target li:nth-of-type(90) a,
-section:target p:nth-of-type(90) {
-  -webkit-animation: slide-from forwards 4625ms ease-in-out;
-          animation: slide-from forwards 4625ms ease-in-out;
-}
-
-section:target li:nth-of-type(91) a,
-section:target p:nth-of-type(91) {
-  -webkit-animation: slide-from forwards 4675ms ease-in-out;
-          animation: slide-from forwards 4675ms ease-in-out;
-}
-
-section:target li:nth-of-type(92) a,
-section:target p:nth-of-type(92) {
-  -webkit-animation: slide-from forwards 4725ms ease-in-out;
-          animation: slide-from forwards 4725ms ease-in-out;
-}
-
-section:target li:nth-of-type(93) a,
-section:target p:nth-of-type(93) {
-  -webkit-animation: slide-from forwards 4775ms ease-in-out;
-          animation: slide-from forwards 4775ms ease-in-out;
-}
-
-section:target li:nth-of-type(94) a,
-section:target p:nth-of-type(94) {
-  -webkit-animation: slide-from forwards 4825ms ease-in-out;
-          animation: slide-from forwards 4825ms ease-in-out;
-}
-
-section:target li:nth-of-type(95) a,
-section:target p:nth-of-type(95) {
-  -webkit-animation: slide-from forwards 4875ms ease-in-out;
-          animation: slide-from forwards 4875ms ease-in-out;
-}
-
-section:target li:nth-of-type(96) a,
-section:target p:nth-of-type(96) {
-  -webkit-animation: slide-from forwards 4925ms ease-in-out;
-          animation: slide-from forwards 4925ms ease-in-out;
-}
-
-section:target li:nth-of-type(97) a,
-section:target p:nth-of-type(97) {
-  -webkit-animation: slide-from forwards 4975ms ease-in-out;
-          animation: slide-from forwards 4975ms ease-in-out;
-}
-
-section:target li:nth-of-type(98) a,
-section:target p:nth-of-type(98) {
-  -webkit-animation: slide-from forwards 5025ms ease-in-out;
-          animation: slide-from forwards 5025ms ease-in-out;
-}
-
-section:target li:nth-of-type(99) a,
-section:target p:nth-of-type(99) {
-  -webkit-animation: slide-from forwards 5075ms ease-in-out;
-          animation: slide-from forwards 5075ms ease-in-out;
-}
-
-section,
-section h1.title {
+main section > * {
   opacity: 0;
 }
 
-section h1.title,
-section p.paragraph {
-  padding: 0 1.75em;
-}
-
-section h1.title {
+main section h1.title {
   font-family: 'Lobster', cursive;
   font-size: 1.5em;
   margin-bottom: 1em;
@@ -906,7 +489,93 @@ section h1.title {
   text-align: center;
 }
 
-section p.paragraph {
+@media (min-width: 1024px) {
+  main section {
+    padding: 0 7em;
+  }
+}
+
+main section:target *:nth-child(1) {
+  -webkit-animation: slide forwards 175ms ease-in-out;
+          animation: slide forwards 175ms ease-in-out;
+}
+
+main section:target *:nth-child(2) {
+  -webkit-animation: slide forwards 225ms ease-in-out;
+          animation: slide forwards 225ms ease-in-out;
+}
+
+main section:target *:nth-child(3) {
+  -webkit-animation: slide forwards 275ms ease-in-out;
+          animation: slide forwards 275ms ease-in-out;
+}
+
+main section:target *:nth-child(4) {
+  -webkit-animation: slide forwards 325ms ease-in-out;
+          animation: slide forwards 325ms ease-in-out;
+}
+
+main section:target *:nth-child(5) {
+  -webkit-animation: slide forwards 375ms ease-in-out;
+          animation: slide forwards 375ms ease-in-out;
+}
+
+main section:target *:nth-child(6) {
+  -webkit-animation: slide forwards 425ms ease-in-out;
+          animation: slide forwards 425ms ease-in-out;
+}
+
+main section:target *:nth-child(7) {
+  -webkit-animation: slide forwards 475ms ease-in-out;
+          animation: slide forwards 475ms ease-in-out;
+}
+
+main section:target *:nth-child(8) {
+  -webkit-animation: slide forwards 525ms ease-in-out;
+          animation: slide forwards 525ms ease-in-out;
+}
+
+main section:target *:nth-child(9) {
+  -webkit-animation: slide forwards 575ms ease-in-out;
+          animation: slide forwards 575ms ease-in-out;
+}
+
+main section:target *:nth-child(10) {
+  -webkit-animation: slide forwards 625ms ease-in-out;
+          animation: slide forwards 625ms ease-in-out;
+}
+
+main section:target *:nth-child(11) {
+  -webkit-animation: slide forwards 675ms ease-in-out;
+          animation: slide forwards 675ms ease-in-out;
+}
+
+main section:target *:nth-child(12) {
+  -webkit-animation: slide forwards 725ms ease-in-out;
+          animation: slide forwards 725ms ease-in-out;
+}
+
+main section:target *:nth-child(13) {
+  -webkit-animation: slide forwards 775ms ease-in-out;
+          animation: slide forwards 775ms ease-in-out;
+}
+
+main section:target *:nth-child(14) {
+  -webkit-animation: slide forwards 825ms ease-in-out;
+          animation: slide forwards 825ms ease-in-out;
+}
+
+main section:target *:nth-child(15) {
+  -webkit-animation: slide forwards 875ms ease-in-out;
+          animation: slide forwards 875ms ease-in-out;
+}
+
+main section:target *:nth-child(16) {
+  -webkit-animation: slide forwards 925ms ease-in-out;
+          animation: slide forwards 925ms ease-in-out;
+}
+
+main section#about p {
   font-family: 'Source Serif Pro', serif;
   font-size: 1em;
   line-height: 1.85em;
@@ -914,53 +583,59 @@ section p.paragraph {
   text-align: justify;
 }
 
+main section#about p span {
+  font-family: 'Lobster', cursive;
+}
+
 @media (max-width: 512px) {
-  section p.paragraph {
+  main section#about p {
     text-align: left;
   }
 }
 
-section p.paragraph span {
-  font-family: 'Lobster', cursive;
-}
-
-ul.activities-gallery {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+main section#activities ul.activities-gallery {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   margin: 0 auto;
   width: 95%;
 }
 
-ul.activities-gallery li.activities-gallery-item {
+main section#activities ul.activities-gallery li.activities-gallery-item {
   font-size: 0.75rem;
   padding: 1em;
 }
 
-ul.activities-gallery li.activities-gallery-item a {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #bd081c;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0.25em;
-  position: relative;
+main section#activities ul.activities-gallery li.activities-gallery-item a {
+  border: dotted 0.125em rgba(12, 12, 12, 0.25);
+  padding: 0.0625em;
 }
 
-ul.activities-gallery li.activities-gallery-item a img {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+main section#activities ul.activities-gallery li.activities-gallery-item a, main section#activities ul.activities-gallery li.activities-gallery-item a::after,
+main section#activities ul.activities-gallery li.activities-gallery-item a img {
+  border-radius: 0.125em;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a::after {
+  height: calc(100% - 0.25em);
+  opacity: 0.35;
+  width: calc(100% - 0.25em);
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a img {
+  background-color: rgba(12, 12, 12, 0.25);
+  -webkit-filter: saturate(32%);
+          filter: saturate(32%);
   max-height: 50vh;
+  padding: 0.125em;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a:hover::after {
+  opacity: 0.25;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a:hover img {
+  -webkit-filter: saturate(100%);
+          filter: saturate(100%);
 }
 
 div.activities-pic-modal {
@@ -978,8 +653,8 @@ div.activities-pic-modal:target {
 
 div.activities-pic-modal:target,
 div.activities-pic-modal:target a {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 div.activities-pic-modal:target a {
@@ -1002,67 +677,112 @@ div.activities-pic-modal:target img {
   padding: 0.25rem;
 }
 
-ul.projects-gallery {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+main section#activities ul.activities-gallery li.activities-gallery-item a::after {
+  -webkit-transition: opacity 750ms ease-in-out;
+  transition: opacity 750ms ease-in-out;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a img {
+  -webkit-transition: -webkit-filter 830ms ease-in-out;
+  transition: -webkit-filter 830ms ease-in-out;
+  transition: filter 830ms ease-in-out;
+  transition: filter 830ms ease-in-out, -webkit-filter 830ms ease-in-out;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a:hover::after {
+  -webkit-transition: opacity 375ms ease-in-out;
+  transition: opacity 375ms ease-in-out;
+}
+
+main section#activities ul.activities-gallery li.activities-gallery-item a:hover img {
+  -webkit-transition: -webkit-filter 415ms ease-in-out;
+  transition: -webkit-filter 415ms ease-in-out;
+  transition: filter 415ms ease-in-out;
+  transition: filter 415ms ease-in-out, -webkit-filter 415ms ease-in-out;
+}
+
+div.activities-pic-modal:target {
+  -webkit-animation: fade forwards 225ms ease-in-out;
+          animation: fade forwards 225ms ease-in-out;
+}
+
+div.activities-pic-modal:target img {
+  -webkit-animation: slide forwards 375ms ease-in-out;
+          animation: slide forwards 375ms ease-in-out;
+}
+
+main section#projects ul.projects-gallery {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  border: dotted 0.0625em rgba(12, 12, 12, 0.25);
+  border-radius: 0.125em;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   font-size: 1.125rem;
   margin: 0 auto;
+  padding: 0.125em;
   width: 75%;
 }
 
-ul.projects-gallery li {
-  text-align: center;
-  -webkit-transition: background-color 150ms ease-in-out;
-  transition: background-color 150ms ease-in-out;
-}
-
-ul.projects-gallery li:nth-child(odd) {
+main section#projects ul.projects-gallery li:nth-child(odd) {
   background-color: rgba(12, 12, 12, 0.125);
 }
 
-ul.projects-gallery li:nth-child(even) {
+main section#projects ul.projects-gallery li:nth-child(even) {
   background-color: rgba(12, 12, 12, 0.0625);
 }
 
-ul.projects-gallery li:hover {
+main section#projects ul.projects-gallery li:nth-child(1) {
+  border-top-left-radius: 0.125em;
+  border-top-right-radius: 0.125em;
+}
+
+main section#projects ul.projects-gallery li:nth-last-child(1) {
+  border-bottom-left-radius: 0.125em;
+  border-bottom-right-radius: 0.125em;
+}
+
+main section#projects ul.projects-gallery li:hover {
   background-color: rgba(189, 8, 28, 0.25);
 }
 
-ul.projects-gallery a {
-  font-family: 'Source Serif Pro', serif;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 1em;
-  text-decoration: none;
+main section#projects ul.projects-gallery a {
   color: #0c0c0c;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+}
+
+main section#projects ul.projects-gallery li {
+  -webkit-transition: background-color 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out;
 }
 
 footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: inset 0 1px 0 rgba(189, 8, 28, 0.125);
-          box-shadow: inset 0 1px 0 rgba(189, 8, 28, 0.125);
   background-color: #fafafa;
+  -webkit-box-shadow: inset 0 1px 0 rgba(12, 12, 12, 0.125);
+          box-shadow: inset 0 1px 0 rgba(12, 12, 12, 0.125);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 0.55rem;
-  height: 2.75%;
+  font-size: 0.375rem;
+  height: 2.83401vh;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
 footer a {
-  color: rgba(12, 12, 12, 0.5);
+  font-family: 'Source Sans Pro', sans-serif;
+  color: rgba(12, 12, 12, 0.6);
   margin: 0 0.75em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 512px) {

@@ -1,0 +1,31 @@
+@mixin center-items {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin center-self {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@mixin cursive {
+  font-family: 'Lobster', cursive;
+}
+
+@mixin fill-in {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin sans {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@mixin serif {
+  font-family: 'Source Serif Pro', serif;
+}
