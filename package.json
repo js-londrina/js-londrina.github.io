@@ -1,6 +1,6 @@
 {
   "name": "js-londrina.github.io",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Informational page for the community 'JS Londrina'",
   "main": "./javascripts/index.js",
   "dependencies": {},
