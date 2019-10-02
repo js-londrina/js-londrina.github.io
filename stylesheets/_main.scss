@@ -1,0 +1,56 @@
+//* STYLES
+
+main {
+  background-color: $color-white;
+  height: $main-height;
+  overflow: hidden;
+  position: relative;
+}
+
+main section {
+  @include fill-in();
+  font-size: 1rem;
+  overflow: auto;
+  padding: 0 1.75em;
+  pointer-events: none;
+
+  &:target {
+    pointer-events: initial;
+
+    @for $index from 1 through 16 {
+      *:nth-child(#{$index}) {
+        animation: slide forwards #{125 + ($index * 50)}ms ease-in-out;
+      }
+    }
+
+    & > * {
+      opacity: 1;
+    }
+  }
+
+  & > * {
+    opacity: 0;
+  }
+
+  h1.title {
+    @include cursive();
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  @media (min-width: #{$min-body-size * 4}px) {
+    padding: 0 7em;
+  }
+}
+
+//* ANIMATIONS
+
+main section:target {
+  @for $index from 1 through 16 {
+    *:nth-child(#{$index}) {
+      animation: slide forwards #{125 + ($index * 50)}ms ease-in-out;
+    }
+  }
+}

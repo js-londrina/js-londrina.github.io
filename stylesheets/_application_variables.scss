@@ -1,0 +1,14 @@
+//* Proportion calculations for header - main - footer; when changing, set ONLY $proportions
+
+$proportion: (2, 10, 0.35);
+$calculator: $base-height /
+  (nth($proportion, 1) + nth($proportion, 2) + nth($proportion, 3));
+$header-height: $calculator * nth($proportion, 1);
+$main-height: $calculator * nth($proportion, 2);
+$footer-height: $calculator * nth($proportion, 3);
+
+//* Colors
+
+$color-main: rgba(189, 8, 28, 1);
+$color-black: rgba(12, 12, 12, 1);
+$color-white: rgba(250, 250, 250, 1);

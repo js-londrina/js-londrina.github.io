@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css');
+
+@import './application_responsiveness';
+@import './application_variables';
+@import './application_mixins';
+@import './application_animations';
+@import './application_globals';
+
+@import './root';
+@import './header';
+@import './main';
+@import './main#about';
+@import './main#activities';
+@import './main#projects';
+@import './footer';

@@ -1,0 +1,26 @@
+{
+  "name": "js-londrina.github.io",
+  "version": "1.1.0",
+  "description": "Informational page for the community 'JS Londrina'",
+  "main": "./javascripts/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdneto/js-londrina.github.io.git"
+  },
+  "author": "Gilson Doi Junior",
+  "contributors": [
+    "José Dias Neto <jdneto@live.com> (https://github.com/jdneto)"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdneto/js-londrina.github.io/issues"
+  },
+  "homepage": "https://github.com/jdneto/js-londrina.github.io#readme"
+}

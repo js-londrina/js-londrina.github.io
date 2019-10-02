@@ -2,98 +2,117 @@
 <html lang="pt-BR">
 
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143821088-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-143821088-1');
-    </script> -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>JS Londrina</title>
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
-  <link href="./stylesheets/home.css" rel="stylesheet">
-  <style>
-  </style>
+  <link rel="stylesheet" href="./stylesheets/index.css" />
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-143821088-1" defer></script>
+  <script type="module" src="./scripts/index.js" defer></script>
 </head>
 
 <body>
-  <div id="banner"></div>
-  <img src="./images/logo.jpg" class="logo" />
-  <div class="links">
-    <a href="https://www.facebook.com/jsldna" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://github.com/js-londrina/" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://devlondrina.slack.com/messages/GL6UHENSY/details/" target="_blank"><i class="fab fa-slack"></i></a>
-    <a href="https://calendar.google.com/calendar/embed?src=26tbnscf1he8hikscosvhbk4ck%40group.calendar.google.com&ctz=America%2FSao_Paulo"
-      target="_blank"><i class="far fa-calendar-alt"></i></a>
-
-  </div>
-  <h1 class="display">Comunidade de Javascript de Londrina e Região</h1>
-  <div class="text">
-    <div class="col">
-      <p class="serif">
-        Somos uma comunidade focada em <span class="display">Javascript</span>, mas não limitados. Somos <span
-          class="display">desenvolvedores, designers, professores e profissionais no geral</span> que trabalham com
-        Javascript.
-        Temos interesse em promover, disseminar <span class="display">práticas relacionadas a Javacript e outras
-          práticas</span> que ajudem a evoluir nossa prática como programadores Javascript.
-      </p>
-      <p class="serif">
-        A comunidade é aberta a todos os interessados em colaborar e <span class="display">não tem fins
-          lucrativos</span>.
-        Eventualmente algumas ações contam com taxa de inscrição, mas todo o valor é revertido para <span
-          class="display">custeio</span> de manutenção e ações da comunidade como <span class="display">coffe breaks,
-          brindes e premiações</span>.
-        Também temos interesse em estar sempre em contato com o <span class="display">mercado</span> e entender as
-        necessidades dos profissionais e temos aberto o canal de <span class="display">patrocínios</span> das nossas
-        ações, seja por meio de capital (novamente revertido totalmente para as ações da comunidade) ou através de
-        materiais, cessão de espaço e outras possibilidades.
-      </p>
+  <header id="home" class="red-mask" data-background-image="./images/banner.jpg">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#about">Sobre</a>
+      </li>
+      <li class="menu-item">
+        <a href="#activities">Ações</a>
+      </li>
+      <li class="menu-item">
+        <a href="#projects">Projetos</a>
+      </li>
+    </ul>
+    <a class="jsl-logo" href="#home">
+      <img src="./images/jsl-logo.svg" alt="Javascript Londrina">
+    </a>
+    <ul class="social">
+      <li class="social-item">
+        <a href="https://www.facebook.com/jsldna" target="_blank">
+          <span>Facebook</span>
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://github.com/js-londrina" target="_blank">
+          <span>Github</span>
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://devlondrina.slack.com/messages/GL6UHENSY/details" target="_blank">
+          <span>Slack</span>
+          <i class="fab fa-slack"></i>
+        </a>
+        <a href="https://calendar.google.com/calendar/embed?src=26tbnscf1he8hikscosvhbk4ck%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+          target="_blank">
+          <span>Agenda</span>
+          <i class="far fa-calendar-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <section id="about">
+      <h1 class="title">Comunidade de Javascript de Londrina e Região</h1>
+      <p class="paragraph">Somos uma comunidade focada em <span>Javascript</span>, mas não limitados. Somos
+        <span>desenvolvedores, designers, professores e profissionais no geral</span> que trabalham com Javascript.
+        Temos interesse em promover, disseminar <span>práticas relacionadas a Javacript e outras práticas</span> que
+        ajudem a evoluir nossa prática como programadores Javascript.</p>
+      <p class="paragraph">A comunidade é aberta a todos os interessados em colaborar e <span>não tem fins
+          lucrativos</span>. Eventualmente algumas ações contam com taxa de inscrição, mas todo o valor é revertido para
+        <span>custeio</span> de manutenção e ações da comunidade como <span>coffe breaks, brindes e premiações</span>.
+        Também temos interesse em estar sempre em contato com o <span>mercado</span> e entender as necessidades dos
+        profissionais e temos aberto o canal de <span>patrocínios</span> das nossas ações, seja por meio de capital
+        (novamente revertido totalmente para as ações da comunidade) ou através de materiais, cessão de espaço e outras
+        possibilidades.</p>
+      <p class="paragraph">Se você tem interesse em colaborar com a comunidade <span>toda ajuda é bem vinda</span>.
+        Precisamos de gente para <span>organizar eventos, designers web e de materiais de divulgação, redatores e
+          comunicação</span> e qualquer outra atividade que você acredite que possa colaborar com a comunidade. E
+        ressaltamos que você não precisa ter nenhuma formação, você vai se surpreender o quanto você pode aprender
+        fazendo coisas que não sou do seu cotidiano!</p>
+    </section>
+    <section id="activities">
+      <h1 class="title">Últimas ações da comunidade</h1>
+      <ul class="activities-gallery">
+        <li class="activities-gallery-item">
+          <a class="red-mask" href="#activities-zoom-desenvolvendo-uma-skill-para-amazon-alexa">
+            <img src="" alt="" data-src="./images/activities/desenvolvendo-uma-skill-para-amazon-alexa(thumb).jpg" />
+          </a>
+        </li>
+        <li class="activities-gallery-item">
+          <a class="red-mask" href="#activities-zoom-workshop-de-scrum">
+            <img src="" alt="" data-src="./images/activities/workshop-de-scrum(thumb).jpg" />
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section id="projects">
+      <h1 class="title">Projetos da comunidade</h1>
+      <ul class="projects-gallery">
+        <li class="projects-gallery-item">
+          <a href="https://github.com/js-londrina/assistente-js-londrina" target="_blank">Assistente da Comunidade
+            (Alexa)</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <h3>
+      <a href="https://docs.google.com/spreadsheets/d/1B2BBOLXjxEq7D4z3D4KRfibMh0vfLsKRBw9RtSiLYpA/edit?usp=sharing"
+        target="_blank">Transparência: Caixa da comunidade</a>
+    </h3>
+  </footer>
+  <div id="activities-modal">
+    <div class="activities-pic-modal" id="activities-zoom-desenvolvendo-uma-skill-para-amazon-alexa">
+      <a href="#activities">
+        <img src="" data-src="./images/activities/desenvolvendo-uma-skill-para-amazon-alexa.jpg" />
+      </a>
     </div>
-    <div class="col">
-      <p class="serif">
-        Se você tem interesse em colaborar com a comunidade <span class="display">toda ajuda é bem vinda</span>.
-        Precisamos de gente para <span class="display">organizar eventos, designers web e de materiais de divulgação,
-          redatores e comunicação</span> e qualquer outra atividade que você acredite que possa colaborar com a
-        comunidade.
-        E ressaltamos que você não precisa ter nenhuma formação, você vai se surpreender o quanto você pode aprender
-        fazendo coisas que não sou do seu cotidiano!
-      </p>
+    <div class="activities-pic-modal" id="activities-zoom-workshop-de-scrum">
+      <a href="#activities">
+        <img src="" data-src="./images/activities/workshop-de-scrum.jpg" />
+      </a>
     </div>
   </div>
-  <h1 class="display">Últimas ações da comunidade</h1>
-  <div class="gallery">
-    <a href="#img1">
-      <img src="./images/gallery/alexa.png" class="thumbnail">
-    </a>
-    <a href="#img2">
-      <img src="./images/gallery/scrum.jpg" class="thumbnail">
-    </a>
-    <a href="#_" class="lightbox" id="img1">
-      <img src="./images/gallery/alexa.png" class="thumbnail">
-    </a>
-    <a href="#_" class="lightbox" id="img2">
-      <img src="./images/gallery/scrum.jpg" class="thumbnail">
-    </a>
-  </div>
-  <h1 class="display">Projetos da comunidade</h1>
-  <div class="projects">
-    <a href="https://github.com/js-londrina/assistente-js-londrina" target="_blank">Assistente da Comunidade (Alexa)</a>
-  </div>
-
-  <div class="footer">
-    <div class="col">
-      <h3 class="sans"><a
-          href="https://docs.google.com/spreadsheets/d/1B2BBOLXjxEq7D4z3D4KRfibMh0vfLsKRBw9RtSiLYpA/edit?usp=sharing">Transparência:
-          caixa da comunidade</a></h3>
-    </div>
-  </div>
+  <div class="loading"></div>
 </body>
 
 </html>

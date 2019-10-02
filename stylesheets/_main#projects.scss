@@ -1,0 +1,51 @@
+//* STYLES
+
+main section#projects ul.projects-gallery {
+  $borders: 0.125em;
+
+  align-items: stretch;
+  border: dotted 0.0625em rgba($color-black, 0.25);
+  border-radius: $borders;
+  flex-direction: column;
+  font-size: 1.125rem;
+  margin: 0 auto;
+  padding: $borders;
+  width: 75%;
+
+  li {
+    &:nth-child(odd) {
+      background-color: rgba($color-black, 0.125);
+    }
+
+    &:nth-child(even) {
+      background-color: rgba($color-black, 0.0625);
+    }
+
+    &:nth-child(1) {
+      border-top-left-radius: $borders;
+      border-top-right-radius: $borders;
+    }
+
+    &:nth-last-child(1) {
+      border-bottom-left-radius: $borders;
+      border-bottom-right-radius: $borders;
+    }
+
+    &:hover {
+      background-color: rgba($color-main, 0.25);
+    }
+  }
+
+  a {
+    color: $color-black;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+//* ANIMATIONS
+
+main section#projects ul.projects-gallery li {
+  transition: background-color 150ms ease-in-out;
+}

@@ -1,0 +1,15 @@
+main section#about p {
+  @include serif();
+  font-size: 1em;
+  line-height: 1.85em;
+  margin: 1.25em 0;
+  text-align: justify;
+
+  span {
+    @include cursive();
+  }
+
+  @media (max-width: #{$min-body-size * 2}px) {
+    text-align: left;
+  }
+}

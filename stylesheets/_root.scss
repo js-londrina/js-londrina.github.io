@@ -1,0 +1,52 @@
+//* STYLES
+
+body,
+html {
+  @include fill-in();
+}
+
+body {
+  background-color: $color-main;
+  color: $color-black;
+  margin: 0 auto;
+  max-width: $max-body-size-px;
+  min-width: $min-body-size-px;
+  overflow: hidden;
+}
+
+body div.loading {
+  background-color: $color-main;
+  height: 0.25%;
+  opacity: 0;
+  position: fixed;
+  z-index: 100;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &,
+  &::after {
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  &::after {
+    background-color: $color-white;
+    content: '';
+    height: 100%;
+    opacity: 0.5;
+    position: absolute;
+  }
+}
+
+//* ANIMATIONS
+
+body div.loading {
+  transition: opacity 250ms ease-in-out;
+
+  &::after {
+    animation: through forwards 2.25s linear infinite;
+  }
+}
